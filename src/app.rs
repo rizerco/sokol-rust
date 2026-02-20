@@ -411,6 +411,8 @@ pub enum LogItem {
     Ok,
     MallocFailed,
     MacosInvalidNsopenglProfile,
+    MacosMetalCreateSwapchainDepthTextureFailed,
+    MacosMetalCreateSwapchainMsaaTextureFailed,
     Win32LoadOpengl32DllFailed,
     Win32CreateHelperWindowFailed,
     Win32HelperWindowGetdcFailed,
