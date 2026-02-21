@@ -200,7 +200,6 @@ fn make_sokol() {
             match backend {
                 SokolBackend::Metal => {
                     println!("cargo:rustc-link-lib=framework=Metal");
-                    println!("cargo:rustc-link-lib=framework=MetalKit");
                 },
 
                 SokolBackend::Gl | SokolBackend::Gles2 | SokolBackend::Gles3 => {
