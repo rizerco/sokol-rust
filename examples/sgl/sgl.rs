@@ -52,15 +52,13 @@ extern "C" fn init(user_data: *mut ffi::c_void) {
         height: img_height as i32,
         data: {
             let mut data = sg::ImageData::new();
-            data.mip_levels[0] = sg::slice_as_range(&(|| {
-                let mut res = vec![0u32; img_width * img_height];
-                for y in 0..img_height {
-                    for x in 0..img_width {
-                        res[y * img_width + x] = if 0 == (y ^ x) & 1 { 0xFF_00_00_00 } else { 0xFF_FF_FF_FF };
-                    }
+            let mut res = [0u32; 64];
+            for y in 0..img_height {
+                for x in 0..img_width {
+                    res[y * img_width + x] = if 0 == (y ^ x) & 1 { 0xFF_00_00_00 } else { 0xFF_FF_FF_FF };
                 }
-                res
-            })());
+            }
+            data.mip_levels[0] = sg::value_as_range(&res);
             data
         },
         ..Default::default()
